@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2023 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <title>Info Windows</title>
+    <script>
+      /**
+       * @license
+       * Copyright 2023 Google LLC. All Rights Reserved.
+       * SPDX-License-Identifier: Apache-2.0
+       */
+
+      // This example displays a marker at the center of Australia.
+      // When the user clicks the marker, an info window opens.
+      async function initMap() {
+        const contentString = `
+          <div>
+            <h1>Reporte de falta de agua</h1>
+            <div>
+              <p>
+                Reporte hecho a las 19:45. Se reporta una fuga en las tuberias.
+              </p>
+            </div>
+          </div>`;
+        const infoWindow = new google.maps.InfoWindow({
+          content: contentString,
+          ariaLabel: "Reporte de falta de agua",
+        });
+
+        const marker = document.querySelector("gmp-advanced-marker");
+        marker.addEventListener("gmp-click", () => {
+          infoWindow.open({ anchor: marker });
+        });
+      }
+
+      window.initMap = initMap;
+    </script>
+    <style>
+      /**
+       * @license
+       * Copyright 2023 Google LLC. All Rights Reserved.
+       * SPDX-License-Identifier: Apache-2.0
+       */
+
+      /*
+       * Optional: Makes the sample page fill the window.
+       */
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <gmp-map center="19.3984, -99.17" zoom="16" map-id="DEMO_MAP_ID">
+      <gmp-advanced-marker
+        position="19.394807,-99.174364"
+        title="Reporte de falta de agua"
+        gmp-clickable
+      ></gmp-advanced-marker>
+    </gmp-map>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4GPEDAefO0_1SLzvbENgSmSR2TTkBxXM&callback=initMap&libraries=marker&v=beta&solution_channel=GMP_CCS_infowindows_v2"
+      defer
+    ></script>
+  </body>
+</html>

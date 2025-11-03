@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Mi mapa de google</title>
+  </head>
+  <body>
+    <h1>Mi mapa de google</h1>
+    <style>
+      #map {
+        height: 500px;
+        width: 100%;
+      }
+    </style>
+    <div id="map"></div>
+    <script>
+      function initMap() {
+        var options = {
+          zoom: 12,
+          center: { lat: 19.4326, lng: -99.1332 },
+        };
+        var map = new google.maps.Map(document.getElementById("map"), options);
+
+        var maker = new google.maps.Marker({
+          position: { lat: 19.35182, lng: -99.282046 },
+          map: map,
+          //icon: "iconoAgua.jpeg",
+        });
+      }
+    </script>
+    <script
+      async
+      defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4GPEDAefO0_1SLzvbENgSmSR2TTkBxXM&callback=initMap"
+    ></script>
+  </body>
+</html>
