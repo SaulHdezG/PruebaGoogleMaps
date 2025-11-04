@@ -1,0 +1,53 @@
+.parent {
+  display: grid;
+  place-items: center;
+}
+#modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; /* importante */
+  background: #00000099;
+  display: none;
+  z-index: 9999; /* clave: se asegura que esté arriba */
+}
+
+#mapa {
+  width: 600px;
+  height: 400px;
+  border: 1px solid black;
+}
+
+#ventanaModal {
+  background-color: white;
+  padding: 20px;
+  width: 300px;
+  margin: 100px auto;
+}
+
+#barraMenu {
+  background: red;
+}
+
+gmp-map:not(:defined) {
+  display: none;
+}
+#infowindow-content {
+  display: none;
+}
+.pac-controls {
+  display: inline-block;
+  padding: 5px 11px;
+}
+
+.pac-controls label {
+  font-size: 13px;
+  font-weight: 300;
+}
+
+#place-picker {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0.5rem 1rem 1rem;
+}

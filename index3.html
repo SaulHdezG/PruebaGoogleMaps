@@ -153,8 +153,8 @@
     </gmpx-api-loader>
     <gmp-map
       id="map"
-      center="40.749933,-73.98633"
-      zoom="13"
+      center="19.42847,-99.12766"
+      zoom="12"
       map-id="DEMO_MAP_ID"
     >
       <div
@@ -164,35 +164,12 @@
       >
         <div>
           <div id="title">Autocomplete search</div>
-          <div id="type-selector" class="pac-controls">
-            <input
-              type="radio"
-              name="type"
-              id="changetype-all"
-              checked="checked"
-            />
-            <label for="changetype-all">All</label>
-
-            <input type="radio" name="type" id="changetype-establishment" />
-            <label for="changetype-establishment">establishment</label>
-
-            <input type="radio" name="type" id="changetype-address" />
-            <label for="changetype-address">address</label>
-
-            <input type="radio" name="type" id="changetype-geocode" />
-            <label for="changetype-geocode">geocode</label>
-
-            <input type="radio" name="type" id="changetype-cities" />
-            <label for="changetype-cities">(cities)</label>
-
-            <input type="radio" name="type" id="changetype-regions" />
-            <label for="changetype-regions">(regions)</label>
-          </div>
           <br />
           <div id="strict-bounds-selector" class="pac-controls">
             <input type="checkbox" id="use-strict-bounds" value="" />
             <label for="use-strict-bounds">Restrict to map viewport</label>
           </div>
+          <!--Parte importante para las direcciones -->
         </div>
         <gmpx-place-picker id="place-picker" for-map="map"></gmpx-place-picker>
       </div>

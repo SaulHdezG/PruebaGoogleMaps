@@ -1,37 +1,130 @@
 <!DOCTYPE html>
-
-<html>
+<html lang="es">
   <head>
-    <title>Mi mapa de google</title>
-  </head>
-  <body>
-    <h1>Mi mapa de google</h1>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <title>Document</title>
+
     <style>
-      #map {
-        height: 500px;
+      /* ejemplo para centrar el mapa */
+      .map-container {
+        width: 80%;
+        height: 400px;
+        margin: 20px auto;
+        border: 2px solid #000;
+        position: relative; /* necesario para posicionar la barra encima */
+      }
+
+      gmp-map {
         width: 100%;
+        height: 100%;
+      }
+
+      /* Barra de búsqueda flotante */
+      #search-container {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        width: 300px;
+        z-index: 9999;
+        background: white;
+        padding: 6px;
+        border-radius: 6px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
       }
     </style>
-    <div id="map"></div>
-    <script>
-      function initMap() {
-        var options = {
-          zoom: 12,
-          center: { lat: 19.4326, lng: -99.1332 },
-        };
-        var map = new google.maps.Map(document.getElementById("map"), options);
+  </head>
 
-        var maker = new google.maps.Marker({
-          position: { lat: 19.35182, lng: -99.282046 },
-          map: map,
-          //icon: "iconoAgua.jpeg",
-        });
-      }
-    </script>
+  <body>
+    <!-- Carga de Web Components (método 2) -->
     <script
-      async
-      defer
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4GPEDAefO0_1SLzvbENgSmSR2TTkBxXM&callback=initMap"
+      type="module"
+      src="https://ajax.googleapis.com/ajax/libs/@googlemaps/extended-component-library/0.6.11/index.min.js"
     ></script>
+
+    <!-- Loader con tu API key -->
+    <gmpx-api-loader
+      key="AIzaSyC4GPEDAefO0_1SLzvbENgSmSR2TTkBxXM"
+      solution-channel="GMP_CCS_autocomplete_v5"
+    ></gmpx-api-loader>
+
+    <!-- Header -->
+    <header class="header">
+      <nav class="nav" id="nav-menu">
+        <div class="nav_content bd-grid">
+          <div class="nav__perfil">
+            <div class="nav__img">
+              <img src="#" alt="#" />
+              <a href="" class="name">Hola</a>
+            </div>
+          </div>
+          <div class="nav__menu"></div>
+          <ul>
+            <li class="nav__item"><a href="" class="nav__link">Home</a></li>
+            <li class="nav__item"><a href="" class="nav__link">Map</a></li>
+            <li class="nav__item"><a href="" class="nav__link">Contact</a></li>
+            <li class="nav__item"><a href="" class="nav__link">About us</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <button id="generarReporte" type="button">Generar reporte</button>
+
+    <div>
+      <div id="title">Busqueda autocompletada</div>
+    </div>
+
+    <!-- CONTENEDOR DEL MAPA -->
+    <div class="map-container">
+      <!-- 🔍 Barra de búsqueda fuera del <gmp-map> para evitar bloqueo -->
+      <div id="search-container">
+        <gmpx-place-picker id="place-picker" for-map="map"></gmpx-place-picker>
+      </div>
+
+      <!-- Mapa -->
+      <gmp-map
+        id="map"
+        center="19.42847,-99.12766"
+        zoom="12"
+        map-id="DEMO_MAP_ID"
+      >
+        <gmp-advanced-marker
+        id="marker"
+        gmp-clickable
+        \>
+      </gmp-advanced-marker>
+      </gmp-map>
+    </div>
+
+    <!-- Modal -->
+    <div id="modal">
+      <div id="ventanaModal">
+        <h3>Generar reporte</h3>
+        <form>
+          <labe for="motivo">Motivo</label><br />
+            <select id="motivo" name="motivo" required>
+              <option value="">Seleccione una opcion</option>
+              <option value="Falta">Falta de agua</option>
+              <option value="Fuga">Fuga de agua</option>
+            </select>
+          <input type="text" placeholder="Nombre" /><br />
+          <input type="text" placeholder="Apellido paterno" /><br />
+          <label for="comments">Comments:</label>
+          <textarea name="comments"></textarea>
+          <button type="submit">Enviar</button>
+        </form>
+        <button id="cerrar">Cerrar</button>
+        <div id="infowindow-content">
+          <span id="place-name" class="title" style="font-weight: bold"></span
+          ><br />
+          <span id="place-address"></span>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/mapas.js"></script>
+    <script src="js/boton.js"></script>
   </body>
 </html>
